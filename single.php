@@ -8,7 +8,7 @@
 	  get_header(); ?>
 <?php if (have_posts()) : the_post(); update_post_caches($posts); ?>
 <div class="pageheader headtbanner" style="<?php echo (!snape_option('banner_image')) ? 'background:' . $banner_single_color  :'background-image: url('. $banner_image .');background-position: center' ; ?>">
-    <div class="container text-center">
+    <div class="container container-title text-center">
         <h2 class="title"><?php the_title(); ?></h2>
         <div class="text-center">
             <span>
@@ -92,7 +92,7 @@
 									var appkey="<?php echo snape_option('sina_appkey'); ?>";
 									var _URL;
 									if(obj=="weibo"){
-										_URL=weiboShareURL+"&appkey="+appkey+"$url="+host_url+"&title="+title+"&pic="+pic;
+										_URL=weiboShareURL+"url="+host_url+"&appkey="+appkey+"&title="+title+"&pic="+pic;
 									}else if(obj=="facebook"){
 								 		_URL=facebookShareURL+"u="+host_url;
 									}else if(obj=="twitter"){

@@ -4,7 +4,7 @@ Theme URI: https://github.com/Vtrois/Snape
 Author: Vtrois
 Author URI: https://www.vtrois.com/
 Description: A magical theme for WordPress
-Version: 1.0.2
+Version: 1.0.3
 License: Mozilla Public License Version 2.0
 Tags: black, white, blue, two-columns, right-sidebar
 */
@@ -25,7 +25,7 @@ body {
     background: #fff;
     font-weight: 300;
     font-size: 14px;
-    font-family: Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,sans-serif;
+    font-family: 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
     line-height: 24px
 }
 
@@ -47,7 +47,7 @@ h1,h2,h3,h4,h5 {
     margin: 0 0 30px;
     color: #5a5a5a;
     font-weight: 400;
-    font-family: Hiragino Sans GB,Microsoft Yahei,Arial,sans-serif;
+    font-family: 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
 }
 
 p {
@@ -69,11 +69,11 @@ ol,p,ul {
     margin-bottom: 1em;
     color: #333;
     font-size: 1pc;
-    font-family: Hiragino Sans GB,Microsoft Yahei,Arial,sans-serif;
+    font-family: 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
 }
 
-.container span,footer p,#navbar-menu li {
-    font-family: Din,Hiragino Sans GB,Microsoft Yahei,Arial,sans-serif;
+.container-title span,footer p,#navbar-menu li {
+    font-family: Din,'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
 }
 
 cite {
@@ -637,7 +637,7 @@ nav.navbar-inverse.navbar-full .navbar-toggle {
     }
 
     .title-noimg {
-        font-size: 27px
+        font-size: 22px
     }
 }
 

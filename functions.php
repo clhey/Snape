@@ -1,6 +1,6 @@
 <?php
 
-define( 'SNAPE_VERSION' , '1.0.2' );
+define( 'SNAPE_VERSION' , '1.0.3' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
@@ -756,10 +756,10 @@ add_filter('excerpt_more', 'snape_excerpt_more');
  * @version 1.0
  * @package Vtrois
  */
-add_filter( 'private_title_format', 'wpdaxue_private_title_format' );
-add_filter( 'protected_title_format', 'wpdaxue_private_title_format' );
+add_filter( 'private_title_format', 'snape_private_title_format' );
+add_filter( 'protected_title_format', 'snape_private_title_format' );
  
-function wpdaxue_private_title_format( $format ) {
+function snape_private_title_format( $format ) {
     return '%s';
 }
 

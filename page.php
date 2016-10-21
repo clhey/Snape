@@ -1,7 +1,4 @@
 <?php
-/*
-Template Name: 默认模版
-*/
 $page_side_bar = snape_option('page_side_bar');
 $page_side_bar = (empty($page_side_bar)) ? 'right_side' : $page_side_bar;
 $background_color = snape_option('background_color');
@@ -20,7 +17,7 @@ get_header(); ?>
         <div class="row">
         	<?php if($page_side_bar == 'left_side'){ ?>
 				<div id="widget-area" class="col-md-4 hidden-xs hidden-sm">
-					<?php dynamic_sidebar('sidebar_single'); ?>
+					<?php dynamic_sidebar('sidebar_page'); ?>
 				</div>
 			<?php } ?>
             <div class='<?php echo ($page_side_bar == 'single') ? 'col-md-12' : 'col-md-8'; ?>'>
@@ -79,7 +76,7 @@ get_header(); ?>
 									var appkey="<?php echo snape_option('sina_appkey'); ?>";
 									var _URL;
 									if(obj=="weibo"){
-										_URL=weiboShareURL+"url="+host_url+"&title="+title+"&appkey="+appkey+"&pic="+pic+"&searchPic=true";
+										_URL=weiboShareURL+"url="+host_url+"&appkey="+appkey+"&title="+title+"&pic="+pic;
 									}else if(obj=="facebook"){
 								 		_URL=facebookShareURL+"u="+host_url;
 									}else if(obj=="twitter"){
