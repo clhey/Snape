@@ -38,7 +38,7 @@ function remove_default_widget() {
        unregister_widget('WP_Widget_Tag_Cloud');//移除标签云
  //    unregister_widget('WP_Widget_Text');//移除文本框
  //    unregister_widget('WP_Widget_Archives');//移除文章归档
- //    unregister_widget('WP_Widget_RSS');//移除RSS
+       unregister_widget('WP_Widget_RSS');//移除RSS
        unregister_widget('WP_Nav_Menu_Widget');//移除菜单
  //    unregister_widget('WP_Widget_Pages');//移除页面
        unregister_widget('WP_Widget_Calendar');//移除日历

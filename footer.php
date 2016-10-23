@@ -1,6 +1,6 @@
 <div class="clearfix"></div>
     <footer>
-        <a class="cd-top visible-lg"><span class=" fa fa-chevron-up"></span></a>
+        <a class="cd-top visible-lg text-center"><span class="fa fa-chevron-up"></span></a>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">

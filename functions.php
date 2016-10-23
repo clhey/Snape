@@ -1,6 +1,6 @@
 <?php
 
-define( 'SNAPE_VERSION' , '1.0.3' );
+define( 'SNAPE_VERSION' , '1.0.4' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
