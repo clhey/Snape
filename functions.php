@@ -1,6 +1,6 @@
 <?php
 
-define( 'SNAPE_VERSION' , '1.0.4' );
+define( 'SNAPE_VERSION' , '1.0.5' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
@@ -93,19 +93,6 @@ function disable_open_sans( $translations, $text, $context, $domain )
     return $translations;
 }
 add_filter('gettext_with_context', 'disable_open_sans', 888, 4 );
-
-/**
- * 禁止自带JQuery
- * @version 1.0
- * @package Vtrois
- */
-if ( !is_admin() ) {
-function my_init_method() {
-wp_deregister_script( 'jquery' );
-}
-add_action('init', 'my_init_method'); 
-}
-wp_deregister_script( 'l10n' );
 
 /**
  * 禁止字符转义

@@ -80,6 +80,24 @@ function optionsframework_options() {
 		'type' => 'text'
 	);
 	$options[] = array(
+		'name' => '工信部备案信息',
+		'desc' => '输入您的工信部备案号，针对国际版没有备案信息栏目的功能',
+		'id' => 'icp_num',
+		'type' => 'text'
+	);	
+	$options[] = array(
+		'name' => '公安网备案信息',
+		'desc' => '输入您的公安网备案号',
+		'id' => 'gov_num',
+		'type' => 'text'
+	);	
+	$options[] = array(
+		'name' => '公安网备案连接',
+		'desc' => '输入您的公安网备案的链接地址',
+		'id' => 'gov_link',
+		'type' => 'text'
+	);	
+	$options[] = array(
 		'name' => 'SEO设置',
 		'type' => 'heading');
 	$options[] = array(

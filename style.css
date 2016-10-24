@@ -4,7 +4,7 @@ Theme URI: https://github.com/Vtrois/Snape
 Author: Vtrois
 Author URI: https://www.vtrois.com/
 Description: A magical theme for WordPress
-Version: 1.0.4
+Version: 1.0.5
 License: Mozilla Public License Version 2.0
 Tags: black, white, blue, two-columns, right-sidebar
 */
@@ -2009,6 +2009,16 @@ footer p a {
     .social-icons>a i {
         font-size: 20px
     }
+}
+
+.govimg {
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin-right: 6px;
+    background: url(images/icon-police.png) 0 0 no-repeat;
+    vertical-align: middle;
+    margin-top: -4px;
 }
 
 .cd-top {
