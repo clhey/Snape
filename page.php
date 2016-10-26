@@ -16,12 +16,14 @@ get_header(); ?>
     <div class="container">
         <div class="row">
         	<?php if($page_side_bar == 'left_side'){ ?>
-				<div id="widget-area" class="col-md-4 hidden-xs hidden-sm">
-					<?php dynamic_sidebar('sidebar_page'); ?>
-				</div>
+				<aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+					<div id="sidebar-page">
+						<?php dynamic_sidebar('sidebar_single'); ?>
+					</div>
+				</aside>
 			<?php } ?>
-            <div class='<?php echo ($page_side_bar == 'single') ? 'col-md-12' : 'col-md-8'; ?>'>
-                <article>
+            <section class='<?php echo ($page_side_bar == 'single') ? 'col-md-12' : 'col-md-8'; ?>'>
+                <article id="main">
                     <div class="post-inner post-border clearfix">
                         <div class="post-content"><?php the_content(); ?></div>
 						<?php if(snape_option('page_like_donate')||snape_option('page_share')) {?>
@@ -102,11 +104,13 @@ get_header(); ?>
 					<?php comments_template(); ?>
 				</article>
 			<?php endif; ?>
-			</div>
+			</section>
 			<?php if($page_side_bar == 'right_side'){ ?>
-				<div id="widget-area" class="col-md-4 hidden-xs hidden-sm">
-					<?php dynamic_sidebar('sidebar_page'); ?>
-				</div>
+				<aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+					<div id="sidebar-page">
+						<?php dynamic_sidebar('sidebar_single'); ?>
+					</div>
+				</aside>
 			<?php } ?>
 		</div>
 	</div>

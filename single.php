@@ -24,12 +24,14 @@
     <div class="container">
         <div class="row">
         	<?php if($sidebar == 'left_side'){ ?>
-				<div id="widget-area" class="col-md-4 hidden-xs hidden-sm">
+			<aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+				<div id="sidebar">
 					<?php dynamic_sidebar('sidebar_single'); ?>
 				</div>
+			</aside>
 			<?php } ?>
-            <div class='<?php echo ($sidebar == 'single') ? 'col-md-12' : 'col-md-8'; ?>'>
-                <article>
+            <section class='<?php echo ($sidebar == 'single') ? 'col-md-12' : 'col-md-8'; ?>'>
+                <article id="main">
                     <div class="post-inner post-border clearfix">
                         <div class="post-content">
 						<?php if ($ad['top']==1): ?>
@@ -135,11 +137,13 @@
 					<?php comments_template(); ?>
 				</article>
 			<?php endif; ?>
-			</div>
+			</section>
 			<?php if($sidebar == 'right_side'){ ?>
-				<div id="widget-area" class="col-md-4 hidden-xs hidden-sm">
+			<aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+				<div id="sidebar">
 					<?php dynamic_sidebar('sidebar_single'); ?>
 				</div>
+			</aside>
 			<?php } ?>
 		</div>
 	</div>

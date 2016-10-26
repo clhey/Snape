@@ -17,7 +17,7 @@
 		<?php endif; ?>
     </head>
     	<?php flush(); ?>
-   <body>
+   <body data-spy="scroll" data-target=".scrollspy">
     <nav class="navbar navbar-default navbar-fixed bootsnav">
         <div class="top-search">
             <div class="container">

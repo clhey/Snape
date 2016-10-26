@@ -5,7 +5,7 @@ get_header(); ?>
 <div class="post-section blog-post" style="<?php echo (!snape_option('background_image')) ? 'background:' . $background_color  :'background-image: url('. $background_image .');' ; ?>">
     <div class="container">
         <div class="row">
-            <section class="col-md-8">
+            <section id="main" class="col-md-8">
             <?php
                 if(is_home()){
                 snape_banner();
@@ -40,8 +40,10 @@ get_header(); ?>
                 <?php snape_pages(3);?>
                 <?php wp_reset_query(); ?>
             </section>
-            <aside id="widget-area" class="col-md-4 hidden-xs hidden-sm">
-                <?php dynamic_sidebar('sidebar_home'); ?>
+            <aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+                <div id="sidebar-page-hm">
+                    <?php dynamic_sidebar('sidebar_home'); ?>
+                </div>
             </aside>
         </div>
     </div>

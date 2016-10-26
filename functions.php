@@ -1,6 +1,6 @@
 <?php
 
-define( 'SNAPE_VERSION' , '1.0.5' );
+define( 'SNAPE_VERSION' , '1.0.6' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
@@ -37,7 +37,7 @@ function snape_theme_scripts() {
         wp_enqueue_style( 'fontawesome-style', $dir . '/css/font-awesome.css', array(), '4.6.3');
         wp_enqueue_style( 'animate-style', $dir . '/css/animate.css', array(), SNAPE_VERSION);
         wp_enqueue_style( 'bootsnav-style', $dir . '/css/bootsnav.css', array(), SNAPE_VERSION);
-        wp_enqueue_style( 'snape-style', get_stylesheet_uri(), array(), SNAPE_VERSION); 
+        wp_enqueue_style( 'snape-style',  $dir . '/css/snape.css', array(), SNAPE_VERSION); 
         wp_enqueue_script( 'jquerys', $dir . '/js/jquery.min.js' , array(), '3.1.0');
         wp_enqueue_script( 'bootstrap', $dir . '/js/bootstrap.min.js', array(), '3.3.4');
         wp_enqueue_script( 'bootsnav', $dir . '/js/bootsnav.js', array(), SNAPE_VERSION);
@@ -1010,7 +1010,7 @@ function snape_pages($range = 5){
     global $paged, $wp_query;
     if ( !$max_page ) {$max_page = $wp_query->max_num_pages;}
     if($max_page > 1){if(!$paged){$paged = 1;}
-	echo "<ul class='pagination'>";
+	echo "<div class='text-center'><ul class='pagination'>";
         if($paged != 1){
             echo "<li><a href='" . get_pagenum_link(1) . "' class='extend' title='首页'>&laquo;</a></li>";
         }
@@ -1047,7 +1047,7 @@ function snape_pages($range = 5){
         if($paged != $max_page){
             echo "<li><a href='" . get_pagenum_link($max_page) . "' class='extend' title='尾页'>&raquo;</a></li>";
         }
-        echo "</ul>";
+        echo "</ul></div>";
 	}
 }
 
