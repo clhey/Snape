@@ -1,4 +1,10 @@
 <?php
+/**
+ * The template for Settings content control
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
 
 function optionsframework_option_name() {
 
@@ -16,7 +22,7 @@ function optionsframework_options() {
 
 	$options = array();
 	$options[] = array(
-		'name' => '基础配置',
+		'name' => '站点配置',
 		'type' => 'heading');
 	$options[] = array(
 		'name' => '站点logo',
@@ -125,7 +131,6 @@ function optionsframework_options() {
 		'type' => "images",
 		'options' => array(
 			'left_side' => $imagepath . 'col-left.png',
-			'single' => $imagepath . 'col-one.png',
 			'right_side' => $imagepath . 'col-right.png')
 	);
 	$options[] = array(
@@ -172,7 +177,6 @@ function optionsframework_options() {
 		'type' => "images",
 		'options' => array(
 			'left_side' => $imagepath . 'col-left.png',
-			'single' => $imagepath . 'col-one.png',
 			'right_side' => $imagepath . 'col-right.png')
 	);	
 	$options[] = array(
@@ -310,6 +314,61 @@ function optionsframework_options() {
 		'id' => 'snape_banner_url5',
 		'std' => '',
 		'type' => 'text');
+
+	$options[] = array(
+		'name' => '邮件配置',
+		'type' => 'heading');
+	$options[] = array(
+		'name' => 'SMTP服务',
+		'desc' => '是否启用SMTP服务',
+		'id' => 'mail_smtps',
+		'std' => '0',
+		'type' => 'checkbox'
+	);
+	$options[] = array(
+		'name' => '发信人',
+		'desc' => '请填写发件人姓名',
+		'id' => 'mail_name',
+		'std' => 'Kratos',
+		'type' => 'text');
+	$options[] = array(
+		'name' => '邮件服务器',
+		'desc' => '请填写SMTP服务器地址',
+		'id' => 'mail_host',
+		'std' => 'smtp.vtrois.com',
+		'type' => 'text');
+	$options[] = array(
+		'name' => '服务器端口',
+		'desc' => '请填写SMTP服务器端口',
+		'id' => 'mail_port',
+		'std' => '994',
+		'type' => 'text');
+	$options[] = array(
+		'name' => '邮箱帐号',
+		'desc' => '请填写邮箱账号',
+		'id' => 'mail_username',
+		'std' => 'no_reply@vtrois.com',
+		'type' => 'text');
+	$options[] = array(
+		'name' => '邮箱密码',
+		'desc' => '请填写邮箱密码',
+		'id' => 'mail_passwd',
+		'std' => '123456789',
+		'type' => 'text');
+	$options[] = array(
+		'name' => '启用SMTPAuth服务',
+		'desc' => '是否启用SMTPAuth服务',
+		'id' => 'mail_smtpauth',
+		'std' => '1',
+		'type' => 'checkbox'
+	);
+	$options[] = array(
+		'name' => 'SMTPSecure设置',
+		'desc' => '若启用SMTPAuth服务则填写ssl，若不启用则留空',
+		'id' => 'mail_smtpsecure',
+		'std' => 'ssl',
+		'type' => 'text');
+
 	$options[] = array(
 		'name' => '广告配置',
 		'type' => 'heading');

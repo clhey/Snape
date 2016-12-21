@@ -1,4 +1,11 @@
 <?php
+/**
+ * The template for displaying comments
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
+
 if ( post_password_required() ) {
 	return;
 }

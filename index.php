@@ -1,4 +1,11 @@
 <?php
+/**
+ * The main template file
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
+
 $background_color = snape_option('background_color');
 $background_image = snape_option('background_image');
 get_header(); ?>
@@ -41,8 +48,8 @@ get_header(); ?>
                 <?php wp_reset_query(); ?>
             </section>
             <aside id="widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
-                <div id="sidebar-page-hm">
-                    <?php dynamic_sidebar('sidebar_home'); ?>
+                <div id="sidebar">
+                    <?php dynamic_sidebar('sidebar_tool'); ?>
                 </div>
             </aside>
         </div>

@@ -1,4 +1,11 @@
 <?php
+/**
+ * The template for displaying 404 pages (not found)
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
+
 $background_color = snape_option('background_color');
 $background_image = snape_option('background_image');
 get_header(); ?>

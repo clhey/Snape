@@ -1,12 +1,16 @@
 <?php
+/**
+ * Snape functions and definitions
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
 
-define( 'SNAPE_VERSION' , '1.0.6' );
+define( 'SNAPE_VERSION' , '1.1.0' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
- * 主题更新
- * @version 1.0
- * @package Vtrois
+ * Theme updating
  */
 require_once( get_template_directory() . '/inc/version.php' );
 $snape_update_checker = new ThemeUpdateChecker(
@@ -15,9 +19,7 @@ $snape_update_checker = new ThemeUpdateChecker(
 );
 
 /**
- * 替换Gravatar服务器
- * @version 1.0
- * @package Vtrois
+ * Replace Gravatar server
  */
 function snape_get_avatar( $avatar ) {
     $avatar = preg_replace( "/http:\/\/(www|\d).gravatar.com/", "http://cn.gravatar.com",$avatar );
@@ -26,31 +28,29 @@ function snape_get_avatar( $avatar ) {
 add_filter( 'get_avatar', 'snape_get_avatar' );
 
 /**
- * 加载脚本
- * @version 1.0
- * @package Vtrois
+ * Load scripts
  */  
 function snape_theme_scripts() {  
 	$dir = get_template_directory_uri(); 
     if ( !is_admin() ) {  
-        wp_enqueue_style( 'bootstrap-style', $dir . '/css/bootstrap.css', array(), '3.3.7');
-        wp_enqueue_style( 'fontawesome-style', $dir . '/css/font-awesome.css', array(), '4.6.3');
-        wp_enqueue_style( 'animate-style', $dir . '/css/animate.css', array(), SNAPE_VERSION);
-        wp_enqueue_style( 'bootsnav-style', $dir . '/css/bootsnav.css', array(), SNAPE_VERSION);
-        wp_enqueue_style( 'snape-style',  $dir . '/css/snape.css', array(), SNAPE_VERSION); 
+        wp_enqueue_style( 'bootstrap-style', $dir . '/css/bootstrap.min.css', array(), '3.3.7');
+        wp_enqueue_style( 'fontawesome-style', $dir . '/css/font-awesome.min.css', array(), '4.6.3');
+        wp_enqueue_style( 'animate-style', $dir . '/css/animate.min.css', array(), SNAPE_VERSION);
+        wp_enqueue_style( 'bootsnav-style', $dir . '/css/bootsnav.min.css', array(), SNAPE_VERSION);
+        wp_enqueue_style( 'snape-style', get_stylesheet_uri(), array(), SNAPE_VERSION);
+        wp_enqueue_style( 'snape-diy-style',  $dir . '/css/snape.diy.css', array(), SNAPE_VERSION); 
         wp_enqueue_script( 'jquerys', $dir . '/js/jquery.min.js' , array(), '3.1.0');
         wp_enqueue_script( 'bootstrap', $dir . '/js/bootstrap.min.js', array(), '3.3.4');
-        wp_enqueue_script( 'bootsnav', $dir . '/js/bootsnav.js', array(), SNAPE_VERSION);
+        wp_enqueue_script( 'bootsnav', $dir . '/js/bootsnav.min.js', array(), SNAPE_VERSION);
         wp_enqueue_script( 'qrcode', $dir . '/js/jquery.qrcode.min.js', array(), SNAPE_VERSION);
         wp_enqueue_script( 'snape', $dir . '/js/snape.js', array(),  SNAPE_VERSION);
+        wp_enqueue_script( 'snape-diy', $dir . '/js/snape.diy.js', array(),  SNAPE_VERSION);
     }  
 }  
 add_action('wp_enqueue_scripts', 'snape_theme_scripts');
 
 /**
- * 移除头部代码
- * @version 1.0
- * @package Vtrois
+ * Remove the head code
  */
 remove_action( 'wp_head', 'feed_links', 2 );   
 remove_action( 'wp_head', 'feed_links_extra', 3 );   
@@ -95,9 +95,7 @@ function disable_open_sans( $translations, $text, $context, $domain )
 add_filter('gettext_with_context', 'disable_open_sans', 888, 4 );
 
 /**
- * 禁止字符转义
- * @version 1.0
- * @package Vtrois
+ * Prohibit character escaping
  */
 $qmr_work_tags = array('the_title','the_excerpt','single_post_title','comment_author','comment_text','link_description','bloginfo','wp_title', 'term_description','category_description','widget_title','widget_text');
 foreach ( $qmr_work_tags as $qmr_work_tag ) {
@@ -105,38 +103,28 @@ foreach ( $qmr_work_tags as $qmr_work_tag ) {
 }
 
 /**
- * 移除自动保存
- * @version 1.0
- * @package Vtrois
+ * Remove automatically saved
  */
 wp_deregister_script('autosave');
 
 /**
- * 移除修订版本
- * @version 1.0
- * @package Vtrois
+ * Remove the revision
  */
 remove_action('post_updated','wp_save_post_revision' );
 
 /**
- * 短代码标签乱码问题
- * @version 1.0
- * @package Vtrois
+ * Short code
  */
 remove_filter( 'the_content', 'wpautop' );
 add_filter( 'the_content', 'wpautop' , 12);
 
 /**
- * 友情链接功能
- * @version 1.0
- * @package Vtrois
+ * Link manager
  */  
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
 /**
- * 短代码设置
- * @version 1.0
- * @package Vtrois
+ * Short code set
  */
 function success($atts, $content=null, $code="") {
     $return = '<div class="alert alert-success">';
@@ -195,9 +183,9 @@ function ypbtn($atts, $content=null, $code="") {
 add_shortcode('ypbtn' , 'ypbtn' );
 
 function nrtitle($atts, $content=null, $code="") {
-    $return = '<h6>';
+    $return = '<h2>';
     $return .= $content;
-    $return .= '</h6>';
+    $return .= '</h2>';
     return $return;
 }
 add_shortcode('title' , 'nrtitle' );
@@ -324,37 +312,103 @@ function bilibili($atts, $content=null, $code="") {
 }
 add_shortcode('bilibili' , 'bilibili' );
 
-add_action( 'admin_print_footer_scripts', 'shortcode_buttons', 100 );
-function shortcode_buttons() {?>
-    <script type="text/javascript">
-        QTags.addButton( 'title', '内容标题', '[title]标题内容[/title]');
-        QTags.addButton( 'kbd', '键盘文本', '[kbd]按键[/kbd]');
-        QTags.addButton( 'mark', '内容标记', '[mark]内容[/mark]');
-        QTags.addButton( 'striped', '进度条', '[striped]数值[/striped]');
-        QTags.addButton( 'bdbtn', '本地下载', '[bdbtn]本地下载地址[/bdbtn]');
-        QTags.addButton( 'ypbtn', '云盘下载', '[ypbtn]云盘下载地址[/ypbtn]');
-        QTags.addButton( 'music', '网易云音乐', '[music]音乐ID[/music]');
-        QTags.addButton( 'youku', '优酷', '[youku]视频ID[/youku]');
-        QTags.addButton( 'tudou', '土豆', '[tudou code=""]视频ID[/tudou]');
-        QTags.addButton( 'vqq', '腾讯视频', '[vqq auto="0"]视频ID[/vqq]');
-        QTags.addButton( 'youtube', 'YouTube', '[youtube]视频ID[/youtube]');
-        QTags.addButton( 'pptv', 'PPTV', '[pptv]视频ID[/pptv]');
-        QTags.addButton( 'bilibili', '哔哩哔哩', '[bilibili]视频ID[/bilibili]');
-        QTags.addButton( 'success', '绿色背景栏', '[success]正文内容[/success]');
-        QTags.addButton( 'info', '蓝色背景栏', '[info]正文内容[/info]');
-        QTags.addButton( 'warning', '黄色背景栏', '[warning]正文内容[/warning]');
-        QTags.addButton( 'danger', '红色背景栏', '[danger]正文内容[/danger]');
-        QTags.addButton( 'successbox', '绿色面板', '[successbox title="标题内容"]正文内容[/successbox]');
-        QTags.addButton( 'infobox', '蓝色面板', '[infobox title="标题内容"]正文内容[/infobox]');
-        QTags.addButton( 'warningbox', '黄色面板', '[warningbox title="标题内容"]正文内容[/warningbox]');
-        QTags.addButton( 'dangerbox', '红色面板', '[dangerbox title="标题内容"]正文内容[/dangerbox]');
-    </script>
-<?php }
+/**
+ * Create precode function
+ */
+add_action('init', 'more_button_a');
+function more_button_a() {
+   if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+     return;
+   }
+   if ( get_user_option('rich_editing') == 'true' ) {
+     add_filter( 'mce_external_plugins', 'add_plugin' );
+     add_filter( 'mce_buttons', 'register_button' );
+   }
+}
+
+add_action('init', 'more_button_b');
+function more_button_b() {
+   if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+     return;
+   }
+   if ( get_user_option('rich_editing') == 'true' ) {
+     add_filter( 'mce_external_plugins', 'add_plugin_b' );
+     add_filter( 'mce_buttons_3', 'register_button_b' );
+   }
+}
+
+function register_button( $buttons ) {
+    array_push( $buttons, " ", "title" );
+    array_push( $buttons, " ", "kbd" );
+    array_push( $buttons, " ", "mark" );
+    array_push( $buttons, " ", "striped" );
+    array_push( $buttons, " ", "bdbtn" );
+    array_push( $buttons, " ", "ypbtn" );
+    array_push( $buttons, " ", "music" );
+    array_push( $buttons, " ", "youku" );
+    array_push( $buttons, " ", "tudou" );
+    array_push( $buttons, " ", "vqq" );
+    array_push( $buttons, " ", "youtube" );
+    array_push( $buttons, " ", "pptv" );
+    array_push( $buttons, " ", "bilibili" );
+    return $buttons;
+}
+
+function register_button_b( $buttons ) {
+    array_push( $buttons, " ", "success" );
+    array_push( $buttons, " ", "info" );
+    array_push( $buttons, " ", "warning" );
+    array_push( $buttons, " ", "danger" );
+    array_push( $buttons, " ", "successbox" );
+    array_push( $buttons, " ", "infoboxs" );
+    array_push( $buttons, " ", "warningbox" );
+    array_push( $buttons, " ", "dangerbox" );
+    return $buttons;
+}
+
+function add_plugin( $plugin_array ) {
+    $plugin_array['title'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['kbd'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['mark'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['striped'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['bdbtn'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['ypbtn'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['music'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['youku'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['tudou'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['vqq'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['youtube'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['pptv'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['bilibili'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    return $plugin_array;
+}
+
+function add_plugin_b( $plugin_array ) {
+    $plugin_array['success'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['info'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['warning'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['danger'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['successbox'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['infoboxs'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['warningbox'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    $plugin_array['dangerbox'] = get_bloginfo( 'template_url' ) . '/js/buttons/more.js';
+    return $plugin_array;
+}
 
 /**
- * 热度文章
- * @version 1.0
- * @package Vtrois
+ * Add more buttons
+ */
+function add_more_buttons($buttons) {
+        $buttons[] = 'hr';
+        $buttons[] = 'fontselect';
+        $buttons[] = 'fontsizeselect';
+        $buttons[] = 'styleselect';
+    return $buttons;
+}
+add_filter("mce_buttons_2", "add_more_buttons");
+
+/**
+ * The article heat
  */
 function most_comm_posts($days=30, $nums=5) {
     global $wpdb;
@@ -384,16 +438,12 @@ function most_comm_posts($days=30, $nums=5) {
 }
 
 /**
- * 添加文章形式
- * @version 1.0
- * @package Vtrois
+ * Add article type
  */
 add_theme_support( 'post-formats', array('gallery','video') );
 
 /**
- * 关键词设置
- * @version 1.0
- * @package Vtrois
+ * Keywords set
  */
 function snape_keywords(){
     if( is_home() || is_front_page() ){ echo snape_option('site_keywords'); }
@@ -408,10 +458,8 @@ function snape_keywords(){
 }
 
 /**
- * 描述设置
- * @version 1.0
- * @package Vtrois
- */ 
+ * Description set
+ */
 function snape_description(){
     if( is_home() || is_front_page() ){ echo trim(snape_option('site_description')); }
     elseif( is_category() ){ $description = strip_tags(category_description());echo trim($description);}
@@ -430,9 +478,7 @@ function snape_description(){
 }
 
 /**
- * 标题设置
- * @version 1.0
- * @package Vtrois
+ * The title set
  */
 function snape_wp_title( $title, $sep ) {
     global $paged, $page;
@@ -448,11 +494,8 @@ function snape_wp_title( $title, $sep ) {
 }
 add_filter( 'wp_title', 'snape_wp_title', 10, 2 );
 
-
 /**
- * 文章外链优化
- * @version 1.0
- * @package Vtrois
+ * Article outside chain optimization
  */
 function imgnofollow( $content ) {
     $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>";
@@ -488,9 +531,7 @@ function imgnofollow( $content ) {
 add_filter( 'the_content', 'imgnofollow');
 
 /**
- * 后台控制模块
- * @version 1.0
- * @package Vtrois
+ * The admin control module
  */
 if (!function_exists('optionsframework_init')) {
 	define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/theme-options/');
@@ -508,9 +549,7 @@ function snape_options_menu_filter( $menu ) {
 add_filter( 'optionsframework_menu', 'snape_options_menu_filter' );
 
 /**
- * 菜单导航注册
- * @version 1.0
- * @package Vtrois
+ * The menu navigation registration
  */
 function snape_register_nav_menu() {
 	register_nav_menus(array('header_menu' => '菜单导航'));
@@ -518,9 +557,7 @@ function snape_register_nav_menu() {
 add_action('after_setup_theme', 'snape_register_nav_menu');
 
 /**
- * 移除菜单的多余CSS选择器
- * @version 1.0
- * @package Vtrois
+ * Remove the excess CSS selectors
  */
 add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1);
 add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1);
@@ -625,9 +662,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 }
 
 /**
- * 文章缩略图
- * @version 1.0
- * @package Vtrois
+ * Post Thumbnails
  */
 if ( function_exists( 'add_image_size' ) ){  
     add_image_size( 'snape-thumb', 688);
@@ -647,9 +682,7 @@ add_filter( 'add_image_size', create_function( '', 'return 1;' ) );
 add_theme_support( "post-thumbnails" );
 
 /**
- * 分享缩略图抓取
- * @version 1.0
- * @package Vtrois
+ * Share the thumbnail fetching
  */
 function share_post_image(){
     global $post;
@@ -670,9 +703,7 @@ function share_post_image(){
 }
 
 /**
- * 轮播图片
- * @version 1.0
- * @package Vtrois
+ * Banner
  */
 function snape_banner(){
     if( !$output = get_option('snape_banners') ){
@@ -725,9 +756,7 @@ function clear_banner(){
 add_action( 'optionsframework_after_validate', 'clear_banner' );
 
 /**
- * 摘要长度及后缀
- * @version 1.0
- * @package Vtrois
+ * The length and suffix
  */
 function snape_excerpt_length($length) {
     return 170;
@@ -739,9 +768,7 @@ function snape_excerpt_more($more) {
 add_filter('excerpt_more', 'snape_excerpt_more');
 
 /**
- * 文章标题优化
- * @version 1.0
- * @package Vtrois
+ * Post title optimization
  */
 add_filter( 'private_title_format', 'snape_private_title_format' );
 add_filter( 'protected_title_format', 'snape_private_title_format' );
@@ -751,9 +778,7 @@ function snape_private_title_format( $format ) {
 }
 
 /**
- * 密码保护文章
- * @version 1.0
- * @package Vtrois
+ * Password protection articles
  */
 add_filter( 'the_password_form', 'custom_password_form' );
 function custom_password_form() {
@@ -776,9 +801,7 @@ return $o;
 }
 
 /**
- * 文章阅读量统计
- * @version 1.0
- * @package Vtrois
+ * The article reading quantity statistics
  */
 function snape_set_post_views()
 {
@@ -807,9 +830,7 @@ function snape_get_post_views($before = '', $after = '', $echo = 1)
 }
 
 /**
- * 文章评论量统计
- * @version 1.0
- * @package Vtrois
+ * The article reviews quantity statistics
  */
 function snape_comments_users($postid=0,$which=0) {
     $comments = get_comments('status=approve&type=comment&post_id='.$postid);
@@ -831,9 +852,7 @@ function snape_comments_users($postid=0,$which=0) {
 }
 
 /**
- * 文章点赞功能
- * @version 1.0
- * @package Vtrois
+ * Appreciate the article
  */
 function snape_love(){
     global $wpdb,$post;
@@ -858,9 +877,7 @@ add_action('wp_ajax_nopriv_love', 'snape_love');
 add_action('wp_ajax_love', 'snape_love');
 
 /**
- * 评论表情
- * @version 1.0
- * @package Vtrois
+ * Comments on the face
  */
 add_filter('smilies_src','custom_smilies_src',1,10);
 function custom_smilies_src ($img_src, $img, $siteurl){
@@ -874,35 +891,57 @@ function smilies_reset() {
     if ( !get_option( 'use_smilies' ) || $wp_version < 4.2)
         return;
     $wpsmiliestrans = array(
-    ':mrgreen:' => 'icon_mrgreen.gif',
-    ':exclaim:' => 'icon_exclaim.gif',
-    ':neutral:' => 'icon_neutral.gif',
-    ':twisted:' => 'icon_twisted.gif',
-      ':arrow:' => 'icon_arrow.gif',
-        ':eek:' => 'icon_eek.gif',
-      ':smile:' => 'icon_smile.gif',
-   ':confused:' => 'icon_confused.gif',
-       ':cool:' => 'icon_cool.gif',
-       ':evil:' => 'icon_evil.gif',
-    ':biggrin:' => 'icon_biggrin.gif',
-       ':idea:' => 'icon_idea.gif',
-    ':redface:' => 'icon_redface.gif',
-       ':razz:' => 'icon_razz.gif',
-   ':rolleyes:' => 'icon_rolleyes.gif',
-       ':wink:' => 'icon_wink.gif',
-        ':cry:' => 'icon_cry.gif',
-  ':surprised:' => 'icon_surprised.gif',
-        ':lol:' => 'icon_lol.gif',
-        ':mad:' => 'icon_mad.gif',
-        ':sad:' => 'icon_sad.gif',
+    ':mrgreen:' => 'icon_mrgreen.png',
+    ':exclaim:' => 'icon_exclaim.png',
+    ':neutral:' => 'icon_neutral.png',
+    ':twisted:' => 'icon_twisted.png',
+      ':arrow:' => 'icon_arrow.png',
+        ':eek:' => 'icon_eek.png',
+      ':smile:' => 'icon_smile.png',
+   ':confused:' => 'icon_confused.png',
+       ':cool:' => 'icon_cool.png',
+       ':evil:' => 'icon_evil.png',
+    ':biggrin:' => 'icon_biggrin.png',
+       ':idea:' => 'icon_idea.png',
+    ':redface:' => 'icon_redface.png',
+       ':razz:' => 'icon_razz.png',
+   ':rolleyes:' => 'icon_rolleyes.png',
+       ':wink:' => 'icon_wink.png',
+        ':cry:' => 'icon_cry.png',
+  ':surprised:' => 'icon_surprised.png',
+        ':lol:' => 'icon_lol.png',
+        ':mad:' => 'icon_mad.png',
+        ':sad:' => 'icon_sad.png',
     );
 }
 smilies_reset();
 
 /**
- * 评论邮件回复系统
- * @version 1.0
- * @package Vtrois
+ * Mail smtp setting
+ */
+add_action('phpmailer_init', 'mail_smtp');
+function mail_smtp( $phpmailer ) {
+    if(snape_option('mail_smtps') == 1){
+        $mail_name = snape_option('mail_name');
+        $mail_host = snape_option('mail_host');
+        $mail_port = snape_option('mail_port');
+        $mail_username = snape_option('mail_username');
+        $mail_passwd = snape_option('mail_passwd');
+        $mail_smtpsecure = snape_option('mail_smtpsecure');
+        $phpmailer->FromName = $mail_name ? $mail_name : 'Snape'; 
+        $phpmailer->Host = $mail_host ? $mail_host : 'smtp.vtrois.com';
+        $phpmailer->Port = $mail_port ? $mail_port : '994';
+        $phpmailer->Username = $mail_username ? $mail_username : 'no_reply@vtrois.com';
+        $phpmailer->Password = $mail_passwd ? $mail_passwd : '123456789';
+        $phpmailer->From = $mail_username ? $mail_username : 'no_reply@vtrois.com';
+        $phpmailer->SMTPAuth = snape_option('mail_smtpauth')==1 ? true : false ;
+        $phpmailer->SMTPSecure = $mail_smtpsecure ? $mail_smtpsecure : 'ssl';
+        $phpmailer->IsSMTP();
+    }
+}
+
+/**
+ * Comments email response system
  */
 add_action('comment_unapproved_to_approved', 'snape_comment_approved');
 function snape_comment_approved($comment) {
@@ -1002,9 +1041,7 @@ function comment_mail_notify($comment_id) {
 add_action('comment_post', 'comment_mail_notify');
 
 /**
- * 分页
- * @version 1.0
- * @package Vtrois
+ * Paging
  */
 function snape_pages($range = 5){
     global $paged, $wp_query;
@@ -1052,9 +1089,7 @@ function snape_pages($range = 5){
 }
 
 /**
- * 压缩前端页面
- * @version 1.1
- * @package Vtrois
+ * Compress html
  */
 function wp_compress_html(){
     function wp_compress_html_main ($buffer){
@@ -1085,12 +1120,10 @@ ob_start("wp_compress_html_main");
 add_action('get_header', 'wp_compress_html');
 
 /**
- * 后台左侧页脚文字
- * @version 1.1
- * @package Vtrois
+ * Admin footer text
  */
 function snape_admin_footer_text($text) {
-       $text = '<span id="footer-thankyou">感谢使用 <a href=http://cn.wordpress.org/ target="_blank">WordPress</a>进行创作并使用 <a href="http://www.vtrois.com/projects/theme-snape.html" target="_blank">Snape</a>主题样式，<a target="_blank" rel="nofollow" href="http://shang.qq.com/wpa/qunwpa?idkey=82c35be2134e64f296155ad2b2381e0744a994866ae2a0fa5379798edd926b3f">点击</a>加入主题讨论群。</span>';
+       $text = '<span id="footer-thankyou">感谢使用 <a href=http://cn.wordpress.org/ target="_blank">WordPress</a>进行创作，并使用 <a href="https://www.vtrois.com/theme-snape.html" target="_blank">Snape</a>主题样式，<a target="_blank" rel="nofollow" href="http://shang.qq.com/wpa/qunwpa?idkey=182bd07a135c085c88ab7e3de38f2b2d9a86983292355a4708926b99dcd5b89f">点击</a> 加入主题讨论群。</span>';
     return $text;
 }
 

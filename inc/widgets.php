@@ -2,32 +2,14 @@
 
 function snape_widgets_init() {
     register_sidebar( array(
-        'name' => __( '主页侧边栏', 'snape' ),
-        'id' => 'sidebar_home',
+        'name' => __( '侧边栏', 'snape' ),
+        'id' => 'sidebar_tool',
         'description' => __( '', 'snape' ),
         'before_widget' => '<aside id="%1$s" class="widget %2$s clearfix">',
         'after_widget' => '</aside>',
         'before_title' => '<h4 class="widget-title">',
         'after_title' => '</h4>'
     ) );   
-    register_sidebar( array(
-        'name' => __( '文章侧边栏', 'snape' ),
-        'id' => 'sidebar_single',
-        'description' => __( '文章页面侧边栏，仅当选择文章布局为“左、右边栏”时生效。', 'snape' ),
-        'before_widget' => '<aside id="%1$s" class="widget %2$s clearfix">',
-        'after_widget' => '</aside>',
-        'before_title' => '<h4 class="widget-title">',
-        'after_title' => '</h4>'
-    ) );
-    register_sidebar( array(
-        'name' => __( '页面侧边栏', 'snape' ),
-        'id' => 'sidebar_page',
-        'description' => __( '模板页面侧边栏，仅当选择页面布局为“左、右边栏”时生效。', 'snape' ),
-        'before_widget' => '<aside id="%1$s" class="widget %2$s clearfix">',
-        'after_widget' => '</aside>',
-        'before_title' => '<h4 class="widget-title">',
-        'after_title' => '</h4>'
-    ) );
 }
 add_action( 'widgets_init', 'snape_widgets_init' );
 

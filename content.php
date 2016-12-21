@@ -1,3 +1,11 @@
+<?php
+/**
+ * The default template for displaying content
+ *
+ * @package Vtrois
+ * @version 1.1
+ */
+?>
 <article class="hentry clearfix">
 	<?php if ( snape_option( 'show_thumb' )==1 ) : ?>
 	<div class="entry-thumb clearfix"> 

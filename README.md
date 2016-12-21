@@ -1,7 +1,7 @@
 #Snape
 ###A magical theme for WordPress
 
-Snape is a magical theme for WordPress,based on [Bootstrap](https://github.com/twbs/bootstrap) and [Font Awesome](https://github.com/FortAwesome/Font-Awesome). Created and maintained by [Vtrois](https://www.vtrois.com). Stay up to date with the latest release and announcements on [Bulletin Board](https://www.vtrois.com/projects/theme-snape.html).
+Snape is a magical theme for WordPress,based on [Bootstrap](https://github.com/twbs/bootstrap) and [Font Awesome](https://github.com/FortAwesome/Font-Awesome). Created and maintained by [Vtrois](https://www.vtrois.com). Stay up to date with the latest release and announcements on [Bulletin Board](https://www.vtrois.com/theme-snape.html).
 
 ![Snape Demo](https://dn-coding-net-production-pp.qbox.me/4cbfb73a-553d-4e50-9efc-0fc2c623bd78.png) 
 
@@ -11,15 +11,17 @@ Within the download you'll find the following directories and files. You'll see 
 ```
 Snape/
 ├── css/
-│   ├── animate.css
-│   ├── bootsnav.css
-│   ├── bootstrap.css
-│   ├── font-awesome.css
-│   └── normalize.css
+│   ├── animate.min.css
+│   ├── bootsnav.min.css
+│   ├── bootstrap.min.css
+│   ├── font-awesome.min.css
+│   ├── snape.diy.css
+│   └── normalize.min.css
 ├── js/
+│   ├── buttons(has some button pic)
 │   ├── jquery.min.js
 │   ├── jquery.qrcode.js
-│   ├── bootsnav.js
+│   ├── bootsnav.min.js
 │   ├── bootstrap.min.js
 │   └── snape.js
 ├── fonts/
@@ -82,12 +84,13 @@ Snape/
 
 ## Changelog
 
+- v1.1 - She grew up
 - v1.0 - Initialize the project and say Good Morning to everyone!
 
 ##License
 
-- The Snape Html,CSS,JavaScript,and PHP files are licensed under the Mozilla Public License Version 2.0:
-  - https://www.mozilla.org/MPL/2.0/
+- The Snape Html,CSS,JavaScript,and PHP files are licensed under the GNU General Public License v2:
+  - http://www.gnu.org/licenses/gpl-2.0.html
 
 - The Snape documentation is licensed under the CC BY 4.0 License:
   - https://creativecommons.org/licenses/by/4.0
