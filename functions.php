@@ -6,7 +6,7 @@
  * @version 1.1
  */
 
-define( 'SNAPE_VERSION' , '1.1.0' );
+define( 'SNAPE_VERSION' , '1.1.1' );
 require_once( get_template_directory() . '/inc/widgets.php');
 
 /**
