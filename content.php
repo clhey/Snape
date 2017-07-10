@@ -21,11 +21,11 @@
 				</span>
 				<span class="visible-lg visible-md visible-sm pull-left">
 				<?php $category = get_the_category(); echo '<a href="' . get_category_link($category[0] -> term_id) . '"><i class="fa fa-folder-open-o"></i> ' . $category[0] -> cat_name . '</a>'; ?>
-				<a href="<?php the_permalink() ?>#respond"><i class="fa fa-commenting-o"></i> <?php echo snape_comments_users($post->ID); ?> Comments</a>
+				<a href="<?php the_permalink() ?>#respond"><i class="fa fa-commenting-o"></i> <?php echo snape_comments_users($post->ID); ?> 评论</a>
 				</span>
 				<span class="pull-left">
-				<a href="<?php the_permalink() ?>"><i class="fa fa-eye"></i> <?php echo snape_get_post_views(); ?> Views</a>
-				<a href="<?php the_permalink() ?>"><i class="fa fa-thumbs-o-up"></i> <?php if( get_post_meta($post->ID,'love',true) ){ echo get_post_meta($post->ID,'love',true); } else { echo '0'; }?> Times</a>
+				<a href="<?php the_permalink() ?>"><i class="fa fa-eye"></i> <?php echo snape_get_post_views(); ?> 阅读</a>
+				<a href="<?php the_permalink() ?>"><i class="fa fa-thumbs-o-up"></i> <?php if( get_post_meta($post->ID,'love',true) ){ echo get_post_meta($post->ID,'love',true); } else { echo '0'; }?> 赞</a>
 				</span>
 			</div>
 		</header>

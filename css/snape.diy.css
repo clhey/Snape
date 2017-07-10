@@ -1,1 +1,82 @@
 /* Snape CSS Plus */
+
+
+/*表格*/
+
+.post-content table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.post-content table th {
+  font-weight: bold;
+}
+
+.post-content table th,
+.post-content table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.post-content table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.post-content table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+
+/*代码块*/
+
+pre>code {
+  border: none;
+}
+
+
+/*回到顶部*/
+
+.cd-top {
+  cursor: pointer;
+}
+
+
+/*章节目录*/
+
+.toc_widget {
+  z-index: 1000;
+}
+
+.toc_widget a.active {
+  color: red;
+}
+
+
+/*块引用*/
+
+blockquote {
+  background: #f9f9f9;
+  border: 1px dashed #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201C";
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+}

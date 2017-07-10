@@ -1,4 +1,18 @@
 #Snape
+
+修改自[Snape](https://github.com/Vtrois/Snape)
+
+主要有以下改变：
+
+1. 禁用html压缩，增加对代码高亮的支持
+2. 修改blockquote样式
+3. 一些中文化
+
+
+
+
+
+
 ###A magical theme for WordPress
 
 Snape is a magical theme for WordPress,based on [Bootstrap](https://github.com/twbs/bootstrap) and [Font Awesome](https://github.com/FortAwesome/Font-Awesome). Created and maintained by [Vtrois](https://www.vtrois.com). Stay up to date with the latest release and announcements on [Bulletin Board](https://www.vtrois.com/theme-snape.html).
