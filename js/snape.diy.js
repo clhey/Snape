@@ -1,30 +1,60 @@
 /* Snape Javascript Plus */
-(function () {
+(function() {
   'use strict';
 
+  var topBannerHeight = 80;
+
+
+
   //toc scrollToFixed
-  $(document).ready(function () {
+  $(document).ready(function() {
     $('.toc_widget').scrollToFixed({
-      marginTop: 110
+      marginTop: topBannerHeight + 30
     });
   });
 
+  //toc focus
+  $(document).ready(function() {
+    window.addEventListener('hashchange', function() {
+      activeTocLink();
+    });
 
-  //toc 激活
-  $('.toc_widget a').on('click', function () {
     activeTocLink();
-  })
+  });
 
+  //当点击激活的锚时，需要fix位置
+  $('.toc_widget').find('a').on('click', function() {
+    if ($(this).hasClass('active')) {
+      fixHashPosition();
+    }
+  });
 
-  function activeTocLink() {
-    var hash = window.location.hash;
-    var hashLink = 'a[href="' + hash + '"]';
-    console.log(hashLink);
-    $('.toc_widget').find(hashLink).addClass('active');
+  function fixHashPosition() {
+    var hash = $(location.hash);
+    if (hash.length == 0) {
+      return;
+    }
+    var top = hash.offset().top - (topBannerHeight + 10);
+    if (top > 0) {
+      $('html,body').animate({
+        scrollTop: top
+      }, 100);
+    }
   }
 
+  function activeTocLink() {
+    $('.toc_widget').find('a').removeClass('active');
+
+    var hash = window.location.hash;
+    var hashLink = 'a[href="' + hash + '"]';
+    $('.toc_widget').find(hashLink).addClass('active');
+
+    //锚改变时，fix位置
+    fixHashPosition();
+  }
 
 }());
+
 
 
 /*
@@ -34,12 +64,12 @@
  * Copyright (c) 2011 Joseph Cava-Lynch
  * MIT license
  */
-(function ($) {
-  $.isScrollToFixed = function (el) {
+(function($) {
+  $.isScrollToFixed = function(el) {
     return !!$(el).data('ScrollToFixed');
   };
 
-  $.ScrollToFixed = function (el, options) {
+  $.ScrollToFixed = function(el, options) {
     // To avoid scope issues, use 'base' instead of 'this' to reference this
     // class from internal events and functions.
     var base = this;
@@ -132,7 +162,7 @@
       var limit = base.options.limit;
       if (!limit) return 0;
 
-      if (typeof (limit) === 'function') {
+      if (typeof(limit) === 'function') {
         return limit.apply(target);
       }
       return limit;
@@ -181,7 +211,9 @@
           'bottom': base.options.bottom == -1 ? '' : base.options.bottom,
           'margin-left': '0px'
         }
-        if (!base.options.dontSetWidth) { cssOptions['width'] = target.css('width'); };
+        if (!base.options.dontSetWidth) {
+          cssOptions['width'] = target.css('width');
+        };
 
         target.css(cssOptions);
 
@@ -212,7 +244,9 @@
         'margin-left': '0px',
         'bottom': ''
       }
-      if (!base.options.dontSetWidth) { cssOptions['width'] = target.css('width'); };
+      if (!base.options.dontSetWidth) {
+        cssOptions['width'] = target.css('width');
+      };
 
       target.css(cssOptions);
 
@@ -268,7 +302,7 @@
       var marginTop = base.options.marginTop;
       if (!marginTop) return 0;
 
-      if (typeof (marginTop) === 'function') {
+      if (typeof(marginTop) === 'function') {
         return marginTop.apply(target);
       }
       return marginTop;
@@ -409,7 +443,7 @@
       }
     }
 
-    var windowResize = function (event) {
+    var windowResize = function(event) {
       // Check if the element is visible before updating it's position, which
       // improves behavior with responsive designs where this element is hidden.
       if (target.is(':visible')) {
@@ -421,12 +455,12 @@
       }
     }
 
-    var windowScroll = function (event) {
+    var windowScroll = function(event) {
       (!!window.requestAnimationFrame) ? requestAnimationFrame(checkScroll): checkScroll();
     }
 
     // From: http://kangax.github.com/cft/#IS_POSITION_FIXED_SUPPORTED
-    var isPositionFixedSupported = function () {
+    var isPositionFixedSupported = function() {
       var container = document.body;
 
       if (document.createElement && container && container.appendChild && container.removeChild) {
@@ -457,7 +491,7 @@
       return null;
     }
 
-    var preventDefault = function (e) {
+    var preventDefault = function(e) {
       e = e || window.event;
       if (e.preventDefault) {
         e.preventDefault();
@@ -468,7 +502,7 @@
     // Initializes this plugin. Captures the options passed in, turns this
     // off for devices that do not support fixed position, adds the spacer,
     // and binds to the window scroll and resize events.
-    base.init = function () {
+    base.init = function() {
       // Capture the options for this plugin.
       base.options = $.extend({}, $.ScrollToFixed.defaultOptions, options);
 
@@ -540,18 +574,18 @@
         spacer.addClass(base.options.spacerClass);
       }
 
-      target.bind('resize.ScrollToFixed', function () {
+      target.bind('resize.ScrollToFixed', function() {
         spacer.height(target.height());
       });
 
-      target.bind('scroll.ScrollToFixed', function () {
+      target.bind('scroll.ScrollToFixed', function() {
         target.trigger('preUnfixed.ScrollToFixed');
         setUnfixed();
         target.trigger('unfixed.ScrollToFixed');
         checkScroll();
       });
 
-      target.bind('detach.ScrollToFixed', function (ev) {
+      target.bind('detach.ScrollToFixed', function(ev) {
         preventDefault(ev);
 
         target.trigger('preUnfixed.ScrollToFixed');
@@ -588,8 +622,8 @@
 
   // Returns enhanced elements that will fix to the top of the page when the
   // page is scrolled.
-  $.fn.scrollToFixed = function (options) {
-    return this.each(function () {
+  $.fn.scrollToFixed = function(options) {
+    return this.each(function() {
       (new $.ScrollToFixed(this, options));
     });
   };
