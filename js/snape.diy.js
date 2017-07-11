@@ -25,21 +25,17 @@
   //当点击激活的锚时，需要fix位置
   $('.toc_widget').find('a').on('click', function() {
     if ($(this).hasClass('active')) {
-      fixHashPosition();
+      fixHashPosition($(this).hash);
     }
   });
 
-  function fixHashPosition() {
-    var hash = $(location.hash);
-    if (hash.length == 0) {
-      return;
-    }
-    var top = hash.offset().top - (topBannerHeight + 10);
-    if (top > 0) {
-      $('html,body').animate({
-        scrollTop: top
-      }, 100);
-    }
+  function fixHashPosition(hash) {
+    var target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    var targetOffset = $(target).offset().top - (topBannerHeight + 10);
+    $('html,body').animate({
+      scrollTop: targetOffset
+    }, 100);
   }
 
   function activeTocLink() {
@@ -50,7 +46,7 @@
     $('.toc_widget').find(hashLink).addClass('active');
 
     //锚改变时，fix位置
-    fixHashPosition();
+    fixHashPosition(hash);
   }
 
 }());
