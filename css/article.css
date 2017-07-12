@@ -2,34 +2,50 @@
 
 
 /*标题样式*/
-article h1,
-article h2,
-article h3,
-article h4,
-article h5,
-article h6 {
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-article h1{
+.post-content h1{
     font-size: 1.6em;
     font-weight: bold;
 }
 
-article h2 {
+.post-content h2 {
     font-size: 1.4em;
     font-weight: bold;
     padding-bottom: 0.3em;
     border-bottom: 1px solid #cccccc;
 }
 
+.post-content h1 {
+        margin: 15px -30px;
+        padding: 0 25px;
+        border-left: 5px solid #51aded;
+        background-color: #f7f7f7;
+        font-size: 18px;
+        line-height: 40px
+}
+
+@media (max-width:992px) {
+        .post-content h1 {
+                margin: 15px -23px;
+                padding: 0 18px
+        }
+}
+
 
 /*表格*/
 
-article table {
+.post-content table {
     display: block;
     width: 100%;
     overflow: auto;
@@ -39,36 +55,36 @@ article table {
     border-spacing: 0;
 }
 
-article table th {
+.post-content table th {
     font-weight: bold;
 }
 
-article table th,
-article table td {
+.post-content table th,
+.post-content table td {
     padding: 6px 13px;
     border: 1px solid #ddd;
 }
 
-article table tr {
+.post-content table tr {
     background-color: #fff;
     border-top: 1px solid #ccc;
 }
 
-article table tr:nth-child(2n) {
+.post-content table tr:nth-child(2n) {
     background-color: #f8f8f8;
 }
 
 
 /*代码块*/
 
-article pre>code {
+.post-content pre>code {
     border: none;
 }
 
 
 /*块引用*/
 
-article blockquote {
+.post-content blockquote {
     background: #f9f9f9;
     border: 1px dashed #ccc;
     margin: 1.5em 10px;
@@ -76,7 +92,7 @@ article blockquote {
     quotes: "\201C""\201C";
 }
 
-article blockquote:before {
+.post-content blockquote:before {
     color: #ccc;
     content: open-quote;
     font-size: 4em;
@@ -85,6 +101,6 @@ article blockquote:before {
     vertical-align: -0.4em;
 }
 
-article blockquote p {
+.post-content blockquote p {
     display: inline;
 }
