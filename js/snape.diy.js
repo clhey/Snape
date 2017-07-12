@@ -15,7 +15,7 @@
 
   //toc focus
   $(document).ready(function() {
-    window.addEventListener('hashchange', function() {
+    window.addEventListener('hashchange', function(event) {
       activeTocLink();
     });
 
@@ -23,16 +23,16 @@
   });
 
   //当点击激活的锚时，需要fix位置
-  $('.toc_widget').find('a').on('click', function() {
+  $('.toc_widget').find('a').on('click', function(event) {
     if ($(this).hasClass('active')) {
-      fixHashPosition($(this).hash);
+      fixHashPosition($(this).attr('href'));
     }
   });
 
   function fixHashPosition(hash) {
-    var target = document.getElementById(hash.slice(1));
-    if (!target) return;
-    var targetOffset = $(target).offset().top - (topBannerHeight + 10);
+    var target = $('.post-content').find('span' + hash);
+    if (target.length == 0) return;
+    var targetOffset = target.offset().top - (topBannerHeight + 10);
     $('html,body').animate({
       scrollTop: targetOffset
     }, 100);
