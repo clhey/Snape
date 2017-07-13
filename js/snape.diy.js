@@ -30,6 +30,9 @@
   });
 
   function fixHashPosition(hash) {
+    if(hash == ''){
+      return;
+    }
     var target = $('.post-content').find('span' + hash);
     if (target.length == 0) return;
     var targetOffset = target.offset().top - (topBannerHeight + 10);
